@@ -22,8 +22,13 @@ b.addEventListener("click",function(e)
 		newbutton.setAttribute("type","button");
 		newbutton.setAttribute("value",alphbet[getrandnum()]);
 		newbutton.setAttribute("class","newchars");
-	document.body.appendChild(newbutton);
 		newbutton.style.margin="5px";
+		
+		var pict=document.getElementById("p");
+		if(pict!=null)
+		{
+			pict.before(newbutton);
+		}else{document.body.appendChild(newbutton);}
 		
 		if(n==i)
 		{
