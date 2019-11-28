@@ -1,6 +1,25 @@
 var b=document.getElementById("b1");
 var s=0;
 
+function interact(e_name,type,target,time)
+{
+	this.type=type;
+	this.target=target;
+	this.time=time;
+	this.e_name=e_name;
+	this.add=function()
+	{
+	var old_Event=localStorage.getItem(e_name);
+	if(old_Event==null)
+	{	
+      localStorage.setItem(e_name,this.type+this.target+this.time);
+    }
+	else
+	    localStorage.setItem(e_name , old_Event+ this.type+this.target+this.time);
+	}
+}
+
+
 var alphbet=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 function getrandnum()
 {
@@ -33,7 +52,11 @@ b.addEventListener("click",function(e)
 		if(n==i)
 		{
 			s++;
-		 localStorage.setItem("event "+s+ " gererate", e.type +","+e.target+","+new Date());
+			 var l=new interact("event "+s+ " gererate",e.type,e.target,new Date());
+	                  l.add();
+			
+			 // var l=new interact("event gererate",e.type,e.target,new Date());
+	                // l.add();
 		 
 	    }
 	
@@ -68,16 +91,19 @@ b.addEventListener("click",function(e)
 	     newpic.style.display="block";
 		document.body.appendChild(newpic);
 		
-		var old_button=localStorage.getItem("event for letter "+ch);
-		if(old_button==null)
-		{
-		localStorage.setItem("event for letter "+ch, e.type +","+e.target+","+new Date());	
-		}
-		else
-		{
-	localStorage.setItem("event for letter "+ch,old_button+"||"+ e.type +","+e.target+","+new Date());	
+		var l=new interact("event for letter "+ch,e.type,e.target,new Date());
+	        l.add();
+		
+		//var old_button=localStorage.getItem("event for letter "+ch);
+		//if(old_button==null)
+		//{
+		//localStorage.setItem("event for letter "+ch, e.type +","+e.target+","+new Date());	
+		//}
+		//else
+		//{
+	//localStorage.setItem("event for letter "+ch,old_button+"||"+ e.type +","+e.target+","+new Date());	
 
-		}
+	//	}
 		
 		
 	});
@@ -93,26 +119,32 @@ b.addEventListener("click",function(e)
 });
 window.addEventListener("load",function(e)
 {
-	var old_event=localStorage.getItem("event for load window");
-	if(old_event==null){
-	localStorage.setItem("event for load window", e.type+","+e.target+","+new Date());
-    }else
-	{
-	  localStorage.setItem("event for load window", old_event+ "||"+ e.type+","+e.target+","+new Date());
-	}
+	var l=new interact("event for load window",e.type,e.target,new Date());
+	l.add();
+	
+	//var old_event=localStorage.getItem("event for load window");
+	//if(old_event==null){
+	//localStorage.setItem("event for load window", e.type+","+e.target+","+new Date());
+  //  }else
+	//{
+	//  localStorage.setItem("event for load window", old_event+ "||"+ e.type+","+e.target+","+new Date());
+	//}
 	
 	
 });
 
 window.addEventListener("unload",function(e)
 {
-	var old_event=localStorage.getItem("event for unload window");
-	if(old_event==null){
-	localStorage.setItem("event for unload window", e.type+","+e.target+","+new Date());
-    }else
-	{
-	  localStorage.setItem("event for unload window", old_event+"||"+ e.type+","+e.target+","+new Date());
-	}
+	var l=new interact("event for unload window",e.type,e.target,new Date());
+	   l.add();
+
+//	var old_event=localStorage.getItem("event for unload window");
+	//if(old_event==null){
+	//localStorage.setItem("event for unload window", e.type+","+e.target+","+new Date());
+   // }else
+//	{
+	//  localStorage.setItem("event for unload window", old_event+"||"+ e.type+","+e.target+","+new Date());
+	//}
 });
 setInterval(function(){
 	
