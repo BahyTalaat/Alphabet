@@ -1,6 +1,8 @@
 var b=document.getElementById("b1");
 var s=0;
 
+var div=document.getElementById("div");
+
 function interact(e_name,type,target,time)
 {
 	this.type=type;
@@ -35,6 +37,8 @@ b.addEventListener("click",function(e)
 	if(n<=26)
 	{
 		
+	if(div.innerHTML==null)
+	 {	
 	for(var i=1;i<=n;i++)
 	{
 		var newbutton=document.createElement("input");
@@ -43,11 +47,13 @@ b.addEventListener("click",function(e)
 		newbutton.setAttribute("class","newchars");
 		newbutton.style.margin="5px";
 		
-		var pict=document.getElementById("p");
-		if(pict!=null)
-		{
-			pict.before(newbutton);
-		}else{document.body.appendChild(newbutton);}
+		div.appendChild(newbutton);
+		
+		//var pict=document.getElementById("p");
+		//if(pict!=null)
+		//{
+		//	pict.before(newbutton);
+		//}else{document.body.appendChild(newbutton);}
 		
 		if(n==i)
 		{
@@ -58,12 +64,48 @@ b.addEventListener("click",function(e)
 			 // var l=new interact("event gererate",e.type,e.target,new Date());
 	                // l.add();
 		 
-	    }
+	       }
 	
 		
 
 	}
+	 }
+	else
+	 {
+	 div.innerHTML=null;
+	  for(var i=1;i<=n;i++)
+	     {
+		var newbutton=document.createElement("input");
+		newbutton.setAttribute("type","button");
+		newbutton.setAttribute("value",alphbet[getrandnum()]);
+		newbutton.setAttribute("class","newchars");
+		newbutton.style.margin="5px";
 		
+		div.appendChild(newbutton);
+		
+		// var pict=document.getElementById("p");
+		// if(pict!=null)
+		// {
+			// pict.before(newbutton);
+		// }else{document.body.appendChild(newbutton);}
+		
+		if(n==i)
+		 {
+			s++;
+			 var l=new interact("event "+s+ " gererate",e.type,e.target,new Date());
+	                  l.add();
+			
+			 // var l=new interact("event gererate",e.type,e.target,new Date());
+	                // l.add();
+		 
+	         }
+	
+		
+
+	
+	    }
+		 
+	 }	
 		
 	//event handler for the characters
 	
