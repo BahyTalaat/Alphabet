@@ -25,7 +25,7 @@ function interact(e_name,type,target,time)
 var alphbet=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 function getrandnum()
 {
-	return Math.floor(Math.random()*25);
+	return Math.floor(Math.random()*26);
 }
 var t=document.getElementById("t1");
 
@@ -36,6 +36,25 @@ b.addEventListener("click",function(e)
 	var n= parseInt(t.value);
 	if(n<=26)
 	{
+	      var arr=[];
+		for(var j=0;j<n;j++)
+		{
+			var c=alphbet[getrandnum()];
+			var s=0;
+			while(s<arr.length)
+			{
+				if(c==arr[s])
+				{
+					c=alphbet[getrandnum()];
+					s=0;
+				}
+				else{s++;}
+			}
+			
+			arr[j]=c;
+			
+			
+		}
 		
 	if(div.innerHTML==null)
 	 {	
@@ -43,7 +62,7 @@ b.addEventListener("click",function(e)
 	{
 		var newbutton=document.createElement("input");
 		newbutton.setAttribute("type","button");
-		newbutton.setAttribute("value",alphbet[getrandnum()]);
+		newbutton.setAttribute("value",arr[i-1]);
 		newbutton.setAttribute("class","newchars");
 		newbutton.style.margin="5px";
 		
@@ -72,7 +91,7 @@ b.addEventListener("click",function(e)
 	     {
 		var newbutton=document.createElement("input");
 		newbutton.setAttribute("type","button");
-		newbutton.setAttribute("value",alphbet[getrandnum()]);
+		newbutton.setAttribute("value",arr[i-1]);
 		newbutton.setAttribute("class","newchars");
 		newbutton.style.margin="5px";
 		
@@ -135,7 +154,7 @@ b.addEventListener("click",function(e)
 	
 		
 	}else
-		alert("you should not enter more than 26 characters");
+		alert("you should not enter more than 26 characters or value not number");
 		
 		
 });
@@ -221,6 +240,7 @@ localStorage.clear();
 			//console.log(response);
 			var tab=document.getElementById("tabl");
 			tab.style.border='1px solid red';
+			tab.innerHTML='';
 			for(var i=0;i<events.length;i++)
 			{
 				var tr=document.createElement("tr");
